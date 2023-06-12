@@ -7,7 +7,7 @@ def get_csv_data(filename):
   match_list = []
   teams = {}
   # Opens data and stores it as a list of lists
-  with open("dummydata.csv","r",encoding="utf-8") as csvfile:
+  with open(filename + ".csv","r",encoding="utf-8") as csvfile:
     csvreader = csv.reader(csvfile)
     fields = next(csvreader)
     for row in csvreader:
@@ -59,7 +59,7 @@ def get_csv_data(filename):
         average_stats[i] = total_stats[i] / len(team_data)
       teams[team] = average_stats
   return(teams)
-print(get_csv_data("dummydata"))
+
 def findMaxStat(statIndex,local_teams):
   max = 0
   min = 999
