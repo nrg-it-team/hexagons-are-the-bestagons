@@ -1,44 +1,37 @@
+# Initial imports and setup
 import pygame, sys
 import data
 import math
 from pygame.locals import QUIT
 
+# Draws initial window
 pygame.init()
 w = pygame.display.set_mode((400, 400))
 pygame.display.set_caption('Hexagonal Rating')
-
-# categories
-# Auto balance points
-# Cone auto points
-# Cone teleop points
-# Cube teleop points
-# Cube auto points
-# Cycle time
-
 # Draws circle around the hexagon
 w.fill((255, 255, 255))
 pygame.draw.circle(w, (211, 219, 232), (200, 200), 175)
 
-# Calculate the side length of the hexagon
-hexagon_side = 350 / math.sqrt(3)
+# Categories
+#   Auto balance points
+#   Cone auto points
+#   Cone teleop points
+#   Cube teleop points
+#   Cube auto points
+#   Cycle time
 
-# Calculate the points of the hexagon
-hexagon_points = []
-for i in range(6):
-    angle_deg = 60 * i
-    angle_rad = math.radians(angle_deg)
-    x = 200 + 175 * math.cos(angle_rad)
-    y = 200 + 175 * math.sin(angle_rad)
-    hexagon_points.append((x, y))
+# Allows user to choose a dataset (inactive)
 
-# Draw the hexagon
-pygame.draw.polygon(w, (169, 176, 171), hexagon_points)
+#userInputValid = False
+#while not userInputValid:
+#    try:
+#        userInput = input("Enter the name/relative path of the dataset you would like to use\n(Do not include the .csv extension)\n(Will default to dummydata2.csv)")
+#    except:
+#        print("Input invalid")
+#if userInput == "":
+#            userInput = "dummydata2"
 
-# Draws lines inside the hexagon that extend 175px from the center to each vertex
-pygame.draw.line(w, (0, 0, 0), (25, 200), (375, 200))
-pygame.draw.line(w, (0, 0, 0), (112.50000000000004, 351.55444566227675), (287.5, 48.44555433772325))
-pygame.draw.line(w, (0, 0, 0), (287.5, 351.55444566227675), (112.49999999999993, 48.44555433772328))
-
+# Gets data converted from a scouting app .csv file
 teams = data.get_csv_data("dummydata2")
 team_index = list(teams.keys())
 viewing_number = 0
